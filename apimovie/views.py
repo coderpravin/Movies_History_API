@@ -4,6 +4,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView, status
 from .serializers import MovieSerializer
 from movie.models import Movie
+
 # Create your views here.
 class movieView(APIView):
     def get(self,request):
