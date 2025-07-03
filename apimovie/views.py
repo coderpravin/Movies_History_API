@@ -60,4 +60,32 @@ class movieCreateView(APIView):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 
+#using Mixins
+class MovieListMixinsView(mixins.ListModelMixin,mixins.CreateModelMixin, generics.GenericAPIView):
+    serializer_class = MovieSerializer
+    queryset = Movie.objects.all()
+
+    def get(self,request):
+        return self.list(request)
+    
+    def post(self,request):
+        return self.create(request)
+    
+class MovieDetailMixinsView(mixins.RetrieveModelMixin, mixins.UpdateModelMixin,mixins.DestroyModelMixin,  generics.GenericAPIView):
+    serializer_class = MovieSerializer
+    queryset = Movie.objects.all()
+
+    def get(self,request,pk):
+        return self.retrieve(request, pk)
+    
+    def put(self, request, pk):
+        return self.update(request, pk)
+    
+    def delete(self,request,pk):
+        return self.delete(request, pk)
+
+
+
+
+
         
