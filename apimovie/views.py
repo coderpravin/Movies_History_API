@@ -4,7 +4,8 @@ from rest_framework.response import Response
 from rest_framework.views import APIView, status
 from .serializers import MovieSerializer
 from movie.models import Movie
-from rest_framework import mixins, generics
+from rest_framework import mixins, generics, viewsets
+
 
 
 # Create your views here.
