@@ -4,7 +4,10 @@ from rest_framework.response import Response
 from rest_framework.views import APIView, status
 from .serializers import MovieSerializer
 from movie.models import Movie
-from rest_framework import mixins, generics, viewsets
+from rest_framework import mixins, generics
+from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework import filters
+
 
 
 
@@ -64,6 +67,8 @@ class movieCreateView(APIView):
 class MovieListMixinsView(mixins.ListModelMixin,mixins.CreateModelMixin, generics.GenericAPIView):
     serializer_class = MovieSerializer
     queryset = Movie.objects.all()
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['movie_actor']
 
     def get(self,request):
         return self.list(request)
@@ -83,6 +88,8 @@ class MovieDetailMixinsView(mixins.RetrieveModelMixin, mixins.UpdateModelMixin,m
     
     def delete(self,request,pk):
         return self.delete(request, pk)
+    
+
 
 
 
