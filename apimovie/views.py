@@ -4,6 +4,9 @@ from rest_framework.response import Response
 from rest_framework.views import APIView, status
 from .serializers import MovieSerializer
 from movie.models import Movie
+from rest_framework import mixins, generics
+
+
 # Create your views here.
 class movieView(APIView):
     def get(self,request):
@@ -56,4 +59,3 @@ class movieCreateView(APIView):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 
-        
